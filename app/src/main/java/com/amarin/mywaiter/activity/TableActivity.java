@@ -66,8 +66,8 @@ public class TableActivity extends AppCompatActivity implements OnShowMenuClickL
                     TableFragment fragment = (TableFragment) fm.findFragmentById(R.id.fragment_table);
 
                     fm.beginTransaction()
-                            .remove(fragment)
-                            .add(R.id.fragment_table, TableFragment.newInstance(mTablePosition))
+                            .detach(fragment)
+                            .attach(fragment)
                             .commit();
                 }
                 break;
