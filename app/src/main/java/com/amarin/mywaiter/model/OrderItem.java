@@ -1,7 +1,5 @@
 package com.amarin.mywaiter.model;
 
-import android.util.Log;
-
 import java.io.Serializable;
 
 public class OrderItem implements Serializable {
@@ -27,11 +25,6 @@ public class OrderItem implements Serializable {
 
     @Override
     public String toString() {
-        if (getNote() == null) {
-            Log.v(this.getClass().getCanonicalName(), "......................getNote is null");
-        } else {
-            Log.v(this.getClass().getCanonicalName(), "......................getNote is... " + getNote() + "###");
-        }
         return getDish().getName() + (getNote() != null ? " (*)" : "");
     }
 }

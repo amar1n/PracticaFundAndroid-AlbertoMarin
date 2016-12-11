@@ -9,10 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.amarin.mywaiter.R;
+import com.amarin.mywaiter.adapter.TableArrayAdapter;
 import com.amarin.mywaiter.facade.OnTableSelectedListener;
 import com.amarin.mywaiter.model.Restaurant;
 import com.amarin.mywaiter.model.Table;
@@ -29,7 +29,7 @@ public class TableListFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_table_list, container, false);
 
         ListView list = (ListView) root.findViewById(android.R.id.list);
-        ArrayAdapter<Table> adapter = new ArrayAdapter<>(
+        TableArrayAdapter<Table> adapter = new TableArrayAdapter<>(
                 getActivity(),
                 android.R.layout.simple_selectable_list_item,
                 Restaurant.getInstance().getTables() // Nuestro modelo
