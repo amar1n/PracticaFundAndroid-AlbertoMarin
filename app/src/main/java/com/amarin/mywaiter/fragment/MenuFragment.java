@@ -22,7 +22,6 @@ import com.amarin.mywaiter.facade.OnDishSelectedListener;
 import com.amarin.mywaiter.model.Allergen;
 import com.amarin.mywaiter.model.Dish;
 import com.amarin.mywaiter.model.Restaurant;
-import com.amarin.mywaiter.model.Table;
 import com.amarin.mywaiter.utils.MyWaiterConstants;
 
 import org.json.JSONArray;
@@ -41,13 +40,13 @@ public class MenuFragment extends Fragment {
 
     protected OnDishSelectedListener mOnDishSelectedListener;
 
-    protected Table mTable;
+    protected int mTablePosition;
 
-    public static MenuFragment newInstance(Table table) {
+    public static MenuFragment newInstance(int tablePosition) {
         MenuFragment fragment = new MenuFragment();
 
         Bundle arguments = new Bundle();
-        arguments.putSerializable(MyWaiterConstants.ARG_TABLE, table);
+        arguments.putSerializable(MyWaiterConstants.ARG_TABLE_POSITION, tablePosition);
         fragment.setArguments(arguments);
 
         return fragment;
@@ -58,7 +57,7 @@ public class MenuFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         if (getArguments() != null) {
-            mTable = (Table) getArguments().getSerializable(MyWaiterConstants.ARG_TABLE);
+            mTablePosition = getArguments().getInt(MyWaiterConstants.ARG_TABLE_POSITION);
         }
     }
 

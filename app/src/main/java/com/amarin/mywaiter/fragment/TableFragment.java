@@ -19,6 +19,7 @@ import android.widget.ListView;
 import com.amarin.mywaiter.R;
 import com.amarin.mywaiter.facade.OnShowMenuClickListener;
 import com.amarin.mywaiter.model.OrderItem;
+import com.amarin.mywaiter.model.Restaurant;
 import com.amarin.mywaiter.model.Table;
 import com.amarin.mywaiter.utils.MyWaiterConstants;
 
@@ -26,12 +27,12 @@ import java.util.LinkedList;
 
 public class TableFragment extends Fragment {
 
-    protected Table mTable;
+    protected int mPosition;
     protected OnShowMenuClickListener mOnShowMenuClickListener;
 
-    public static TableFragment newInstance(Table table) {
+    public static TableFragment newInstance(int position) {
         Bundle arguments = new Bundle();
-        arguments.putSerializable(MyWaiterConstants.ARG_TABLE, table);
+        arguments.putSerializable(MyWaiterConstants.ARG_TABLE_POSITION, position);
 
         TableFragment tableFragment = new TableFragment();
         tableFragment.setArguments(arguments);
@@ -44,7 +45,7 @@ public class TableFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         if (getArguments() != null) {
-            mTable = (Table) getArguments().getSerializable(MyWaiterConstants.ARG_TABLE);
+            mPosition = getArguments().getInt(MyWaiterConstants.ARG_TABLE_POSITION);
         }
 
         setHasOptionsMenu(true);
@@ -57,11 +58,16 @@ public class TableFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_table, container, false);
 
+        LinkedList<OrderItem> orderItems = new LinkedList<>();
+        Table table = Restaurant.getInstance().getTableByPosition(mPosition);
+        if (table.getOrder() != null && !table.getOrder().getOrderItems().isEmpty()) {
+            orderItems = table.getOrder().getOrderItems();
+        }
         ListView list = (ListView) root.findViewById(android.R.id.list);
         ArrayAdapter<OrderItem> adapter = new ArrayAdapter<>(
                 getActivity(),
                 android.R.layout.simple_list_item_1,
-                mTable.getOrder() != null ? mTable.getOrder().getOrderItems() : new LinkedList<OrderItem>() // Nuestro modelo
+                orderItems // Nuestro modelo
         );
         list.setAdapter(adapter);
 
@@ -90,7 +96,7 @@ public class TableFragment extends Fragment {
         super.onPrepareOptionsMenu(menu);
 
         MenuItem generateTheBill = menu.findItem(R.id.menu_generate_the_bill);
-        generateTheBill.setEnabled(mTable.getOrder() != null);
+        generateTheBill.setEnabled(Restaurant.getInstance().getTableByPosition(mPosition).getOrder() != null);
     }
 
     @Override
@@ -102,8 +108,8 @@ public class TableFragment extends Fragment {
 
                 // Ha habido algún error, se lo notificamos al usuario
                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
-                alertDialog.setTitle(String.format(getString(R.string.table_bill_title_msg), mTable.getCode()));
-                alertDialog.setMessage(String.format(getString(R.string.table_bill_msg), mTable.getBill()));
+                alertDialog.setTitle(String.format(getString(R.string.table_bill_title_msg), Restaurant.getInstance().getTableByPosition(mPosition).getCode()));
+                alertDialog.setMessage(String.format(getString(R.string.table_bill_msg), Restaurant.getInstance().getTableByPosition(mPosition).getBill()));
                 alertDialog.setPositiveButton(android.R.string.ok, null);
                 alertDialog.show();
 

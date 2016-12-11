@@ -51,27 +51,27 @@ public class MenuRecyclerViewAdapter extends RecyclerView.Adapter<MenuRecyclerVi
         return Restaurant.getInstance().getMenu().getDishes().size();
     }
 
-    protected class DishViewHolder extends RecyclerView.ViewHolder {
-        private TextView mDishName;
-        private TextView mDishPrice;
-        private ImageView mDishImage;
-        private ImageView mDishAllergen1;
-        private ImageView mDishAllergen2;
-        private ImageView mDishAllergen3;
-        private ImageView mDishAllergen4;
-        private ImageView mDishAllergen5;
-        private ImageView mDishAllergen6;
-        private ImageView mDishAllergen7;
-        private ImageView mDishAllergen8;
-        private ImageView mDishAllergen9;
-        private ImageView mDishAllergen10;
-        private ImageView mDishAllergen11;
-        private ImageView mDishAllergen12;
-        private ImageView mDishAllergen13;
-        private ImageView mDishAllergen14;
-        private View mView;
+    class DishViewHolder extends RecyclerView.ViewHolder {
+        TextView mDishName;
+        TextView mDishPrice;
+        ImageView mDishImage;
+        ImageView mDishAllergen1;
+        ImageView mDishAllergen2;
+        ImageView mDishAllergen3;
+        ImageView mDishAllergen4;
+        ImageView mDishAllergen5;
+        ImageView mDishAllergen6;
+        ImageView mDishAllergen7;
+        ImageView mDishAllergen8;
+        ImageView mDishAllergen9;
+        ImageView mDishAllergen10;
+        ImageView mDishAllergen11;
+        ImageView mDishAllergen12;
+        ImageView mDishAllergen13;
+        ImageView mDishAllergen14;
+        View mView;
 
-        public DishViewHolder(View itemView) {
+        DishViewHolder(View itemView) {
             super(itemView);
 
             mView = itemView;
@@ -95,7 +95,7 @@ public class MenuRecyclerViewAdapter extends RecyclerView.Adapter<MenuRecyclerVi
             mDishAllergen14 = (ImageView) itemView.findViewById(R.id.dish_allergen14);
         }
 
-        public void bindDish(Dish dish, Context context) {
+        void bindDish(Dish dish, Context context) {
             mDishName.setText(dish.getName());
             mDishPrice.setText(String.format(context.getString(R.string.price_format), dish.getPrice().toString()));
             mDishImage.setImageResource(dish.getIcon());

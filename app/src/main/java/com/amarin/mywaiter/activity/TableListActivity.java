@@ -9,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import com.amarin.mywaiter.R;
 import com.amarin.mywaiter.facade.OnTableSelectedListener;
 import com.amarin.mywaiter.fragment.TableListFragment;
-import com.amarin.mywaiter.model.Table;
 import com.amarin.mywaiter.utils.MyWaiterConstants;
 
 public class TableListActivity extends AppCompatActivity implements OnTableSelectedListener {
@@ -31,18 +30,18 @@ public class TableListActivity extends AppCompatActivity implements OnTableSelec
     }
 
     @Override
-    public void onTableSelected(Table table) {
+    public void onTableSelected(int tablePosition) {
         // Vamos a comprobar si ya tenemos un pager en nuestra interfaz
 //        FragmentManager fm = getFragmentManager();
 //        CityPagerFragment cityPagerFragment = (CityPagerFragment) fm.findFragmentById(R.id.fragment_city_pager);
 //
 //        if (cityPagerFragment != null) {
 //            // Tenemos un pager, le decimos que se mueva a otra ciudad
-//            cityPagerFragment.showCity(position);
+//            cityPagerFragment.showCity(mTablePosition);
 //        }
 //        else {
         Intent intent = new Intent(this, TableActivity.class);
-        intent.putExtra(MyWaiterConstants.ARG_TABLE, table);
+        intent.putExtra(MyWaiterConstants.ARG_TABLE_POSITION, tablePosition);
         startActivity(intent);
 //        }
     }

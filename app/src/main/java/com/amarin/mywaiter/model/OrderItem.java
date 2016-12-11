@@ -3,8 +3,8 @@ package com.amarin.mywaiter.model;
 import java.io.Serializable;
 
 public class OrderItem implements Serializable {
-    protected Dish mDish;
-    protected String mNote;
+    private Dish mDish;
+    private String mNote;
 
     public OrderItem(Dish dish, String note) {
         mNote = note;

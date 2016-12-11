@@ -4,16 +4,12 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.LinkedList;
 
-/**
- * Created by alberto on 4/12/16.
- */
-
 public class Dish implements Serializable {
-    protected String mName;
-    protected String mDescription;
-    protected int mIcon;
-    protected BigDecimal mPrice;
-    protected LinkedList<Allergen> mAllergens;
+    private String mName;
+    private String mDescription;
+    private int mIcon;
+    private BigDecimal mPrice;
+    private LinkedList<Allergen> mAllergens;
 
     public Dish(String name, String description, int icon, BigDecimal price, LinkedList<Allergen> allergens) {
         mName = name;

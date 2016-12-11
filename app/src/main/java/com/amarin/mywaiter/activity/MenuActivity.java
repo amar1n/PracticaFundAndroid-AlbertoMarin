@@ -12,12 +12,12 @@ import com.amarin.mywaiter.facade.OnDishSelectedListener;
 import com.amarin.mywaiter.fragment.MenuFragment;
 import com.amarin.mywaiter.model.Dish;
 import com.amarin.mywaiter.model.OrderItem;
-import com.amarin.mywaiter.model.Table;
+import com.amarin.mywaiter.model.Restaurant;
 import com.amarin.mywaiter.utils.MyWaiterConstants;
 
 public class MenuActivity extends AppCompatActivity implements OnDishSelectedListener {
 
-    protected Table mTable;
+    protected int mTablePosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +25,7 @@ public class MenuActivity extends AppCompatActivity implements OnDishSelectedLis
 
         setContentView(R.layout.activity_menu);
 
-        mTable = (Table) getIntent().getSerializableExtra(MyWaiterConstants.ARG_TABLE);
+        mTablePosition = getIntent().getIntExtra(MyWaiterConstants.ARG_TABLE_POSITION, 0);
 
         setTitle(getString(R.string.app_name) + getString(R.string.toolbar_title_separator) + getString(R.string.toolbar_title_menu));
 
@@ -33,7 +33,7 @@ public class MenuActivity extends AppCompatActivity implements OnDishSelectedLis
         if (findViewById(R.id.fragment_menu) != null) {
             if (fm.findFragmentById(R.id.fragment_menu) == null) {
                 fm.beginTransaction()
-                        .add(R.id.fragment_menu, MenuFragment.newInstance(mTable))
+                        .add(R.id.fragment_menu, MenuFragment.newInstance(mTablePosition))
                         .commit();
             }
         }
@@ -54,11 +54,7 @@ public class MenuActivity extends AppCompatActivity implements OnDishSelectedLis
         if (requestCode == MyWaiterConstants.REQUEST_ORDER_ITEM) {
             if (resultCode == Activity.RESULT_OK) {
                 OrderItem orderItem = (OrderItem) data.getSerializableExtra(MyWaiterConstants.ARG_ORDER_ITEM);
-                mTable.addOrderItem(orderItem);
-
-                Intent returnIntent = new Intent();
-                returnIntent.putExtra(MyWaiterConstants.ARG_TABLE, mTable);
-                setResult(RESULT_OK, returnIntent);
+                Restaurant.getInstance().getTableByPosition(mTablePosition).addOrderItem(orderItem);
                 finish();
             }
         }

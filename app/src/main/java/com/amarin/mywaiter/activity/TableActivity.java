@@ -8,12 +8,12 @@ import android.support.v7.app.AppCompatActivity;
 import com.amarin.mywaiter.R;
 import com.amarin.mywaiter.facade.OnShowMenuClickListener;
 import com.amarin.mywaiter.fragment.TableFragment;
-import com.amarin.mywaiter.model.Table;
+import com.amarin.mywaiter.model.Restaurant;
 import com.amarin.mywaiter.utils.MyWaiterConstants;
 
 public class TableActivity extends AppCompatActivity implements OnShowMenuClickListener {
 
-    protected Table table;
+    protected int mTablePosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,15 +21,15 @@ public class TableActivity extends AppCompatActivity implements OnShowMenuClickL
 
         setContentView(R.layout.activity_table);
 
-        table = (Table) getIntent().getSerializableExtra(MyWaiterConstants.ARG_TABLE);
+        mTablePosition = getIntent().getIntExtra(MyWaiterConstants.ARG_TABLE_POSITION, 0);
 
-        setTitle(getString(R.string.app_name) + getString(R.string.toolbar_title_separator) + table.getCode());
+        setTitle(getString(R.string.app_name) + getString(R.string.toolbar_title_separator) + Restaurant.getInstance().getTableByPosition(mTablePosition).getCode());
 
         if (findViewById(R.id.fragment_table) != null) {
             FragmentManager fm = getFragmentManager();
             if (fm.findFragmentById(R.id.fragment_table) == null) {
                 fm.beginTransaction()
-                        .add(R.id.fragment_table, TableFragment.newInstance(table))
+                        .add(R.id.fragment_table, TableFragment.newInstance(mTablePosition))
                         .commit();
             }
         }
@@ -39,7 +39,7 @@ public class TableActivity extends AppCompatActivity implements OnShowMenuClickL
     @Override
     public void onShowMenuClick() {
         Intent intent = new Intent(this, MenuActivity.class);
-        intent.putExtra(MyWaiterConstants.ARG_TABLE, table);
+        intent.putExtra(MyWaiterConstants.ARG_TABLE_POSITION, mTablePosition);
         startActivityForResult(intent, MyWaiterConstants.REQUEST_MENU);
     }
 
@@ -49,15 +49,13 @@ public class TableActivity extends AppCompatActivity implements OnShowMenuClickL
 
         if (requestCode == MyWaiterConstants.REQUEST_MENU) {
 
-            table = (Table) data.getSerializableExtra(MyWaiterConstants.ARG_TABLE);
-
             if (findViewById(R.id.fragment_table) != null) {
                 FragmentManager fm = getFragmentManager();
                 TableFragment fragment = (TableFragment) fm.findFragmentById(R.id.fragment_table);
 
                 fm.beginTransaction()
                         .remove(fragment)
-                        .add(R.id.fragment_table, TableFragment.newInstance(table))
+                        .add(R.id.fragment_table, TableFragment.newInstance(mTablePosition))
                         .commit();
             }
         }

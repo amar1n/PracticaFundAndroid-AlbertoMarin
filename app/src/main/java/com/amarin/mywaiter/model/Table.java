@@ -2,13 +2,12 @@ package com.amarin.mywaiter.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Iterator;
 
 public class Table implements Serializable {
-    protected String mCode;
-    protected Order mOrder;
+    private String mCode;
+    private Order mOrder;
 
-    public Table(String code) {
+    Table(String code) {
         mCode = code;
     }
 
@@ -29,9 +28,7 @@ public class Table implements Serializable {
         BigDecimal result = BigDecimal.ZERO;
 
         if (getOrder() != null) {
-            Iterator ite = getOrder().getOrderItems().iterator();
-            while (ite.hasNext()) {
-                OrderItem orderItem = (OrderItem) ite.next();
+            for (OrderItem orderItem : getOrder().getOrderItems()) {
                 result = result.add(orderItem.getDish().getPrice());
             }
         }

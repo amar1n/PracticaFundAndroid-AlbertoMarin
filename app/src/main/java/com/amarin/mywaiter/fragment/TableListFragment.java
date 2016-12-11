@@ -40,7 +40,7 @@ public class TableListFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 if (mOnTableSelectedListener != null) {
-                    mOnTableSelectedListener.onTableSelected(Restaurant.getInstance().getTableByPosition(position));
+                    mOnTableSelectedListener.onTableSelected(position);
                 }
             }
         });

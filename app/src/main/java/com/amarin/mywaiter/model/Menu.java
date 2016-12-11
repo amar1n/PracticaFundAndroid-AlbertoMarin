@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.LinkedList;
 
 public class Menu implements Serializable {
-    protected LinkedList<Dish> mDishes;
+    private LinkedList<Dish> mDishes;
 
     public Menu() {
         mDishes = new LinkedList<>();
@@ -14,7 +14,7 @@ public class Menu implements Serializable {
         return mDishes;
     }
 
-    public void setDishes(LinkedList<Dish> dishes) {
+    void setDishes(LinkedList<Dish> dishes) {
         mDishes = dishes;
     }
 }

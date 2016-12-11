@@ -2,13 +2,9 @@ package com.amarin.mywaiter.model;
 
 import java.io.Serializable;
 
-/**
- * Created by alberto on 4/12/16.
- */
-
 public class Allergen implements Serializable {
-    protected String mName;
-    protected int mIcon;
+    private String mName;
+    private int mIcon;
 
     public Allergen(String name, int icon) {
         mName = name;

@@ -1,7 +1,7 @@
 package com.amarin.mywaiter.utils;
 
 public interface MyWaiterConstants {
-    public static final String ARG_TABLE = "ARG_TABLE";
+    public static final String ARG_TABLE_POSITION = "ARG_TABLE_POSITION";
     public static final String ARG_ORDER_ITEM = "ARG_ORDER_ITEM";
 
     public static final int LOADING_VIEW_INDEX = 0;
