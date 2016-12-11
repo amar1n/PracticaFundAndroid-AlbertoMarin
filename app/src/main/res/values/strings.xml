@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">MyWaiter</string>
+    <string name="menu_generate_the_bill">La cuenta!!!</string>
+    <string name="table_bill_title_msg">La cuenta de la mesa %s es...</string>
+    <string name="table_bill_msg">%s!!!</string>
+    <string name="menu_download_error_msg">No se pudo descargar el menú</string>
+    <string name="error">Error</string>
+    <string name="menu_retry_download_msg">Reintentar</string>
+    <string name="price_format">%s €</string>
+    <string name="toolbar_title_menu">"La carta"</string>
+    <string name="toolbar_title_separator">" - "</string>
+    <string name="toolbar_title_order_item">Plato</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="order_item_notes">Notas</string>
+</resources>

@@ -1,0 +1,232 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context="com.amarin.mywaiter.fragment.OrderItemFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/dish_image"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="left|center"
+                android:padding="10dp"
+                android:src="@drawable/pulpo_a_la_gallega"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/dish_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pulpo a la gallega"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="18dp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/dish_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="35,6 €"
+                    android:textSize="18dp"
+                    android:textStyle="bold"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:orientation="horizontal"
+                    android:paddingTop="25dp">
+
+                    <ImageView
+                        android:id="@+id/dish_allergen14"
+                        android:layout_width="@dimen/order_item_allergen"
+                        android:layout_height="@dimen/order_item_allergen"
+                        android:padding="1dp"
+                        android:src="@drawable/allergen_altramuz"/>
+
+                    <ImageView
+                        android:id="@+id/dish_allergen13"
+                        android:layout_width="@dimen/order_item_allergen"
+                        android:layout_height="@dimen/order_item_allergen"
+                        android:padding="1dp"
+                        android:src="@drawable/allergen_apio"/>
+
+                    <ImageView
+                        android:id="@+id/dish_allergen12"
+                        android:layout_width="@dimen/order_item_allergen"
+                        android:layout_height="@dimen/order_item_allergen"
+                        android:padding="1dp"
+                        android:src="@drawable/allergen_cacahuetes"
+                        />
+
+                    <ImageView
+                        android:id="@+id/dish_allergen11"
+                        android:layout_width="@dimen/order_item_allergen"
+                        android:layout_height="@dimen/order_item_allergen"
+                        android:padding="1dp"
+                        android:src="@drawable/allergen_cereal_con_gluten"/>
+
+                    <ImageView
+                        android:id="@+id/dish_allergen10"
+                        android:layout_width="@dimen/order_item_allergen"
+                        android:layout_height="@dimen/order_item_allergen"
+                        android:padding="1dp"
+                        android:src="@drawable/allergen_crustaceos"/>
+
+                    <ImageView
+                        android:id="@+id/dish_allergen9"
+                        android:layout_width="@dimen/order_item_allergen"
+                        android:layout_height="@dimen/order_item_allergen"
+                        android:padding="1dp"
+                        android:src="@drawable/allergen_frutos_secos"/>
+
+                    <ImageView
+                        android:id="@+id/dish_allergen8"
+                        android:layout_width="@dimen/order_item_allergen"
+                        android:layout_height="@dimen/order_item_allergen"
+                        android:padding="1dp"
+                        android:src="@drawable/allergen_huevos"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/dish_allergen7"
+                        android:layout_width="@dimen/order_item_allergen"
+                        android:layout_height="@dimen/order_item_allergen"
+                        android:padding="1dp"
+                        android:src="@drawable/allergen_lacteos"/>
+
+                    <ImageView
+                        android:id="@+id/dish_allergen6"
+                        android:layout_width="@dimen/order_item_allergen"
+                        android:layout_height="@dimen/order_item_allergen"
+                        android:padding="1dp"
+                        android:src="@drawable/allergen_moluscos"/>
+
+                    <ImageView
+                        android:id="@+id/dish_allergen5"
+                        android:layout_width="@dimen/order_item_allergen"
+                        android:layout_height="@dimen/order_item_allergen"
+                        android:padding="1dp"
+                        android:src="@drawable/allergen_mostaza"/>
+
+                    <ImageView
+                        android:id="@+id/dish_allergen4"
+                        android:layout_width="@dimen/order_item_allergen"
+                        android:layout_height="@dimen/order_item_allergen"
+                        android:padding="1dp"
+                        android:src="@drawable/allergen_pescado"/>
+
+                    <ImageView
+                        android:id="@+id/dish_allergen3"
+                        android:layout_width="@dimen/order_item_allergen"
+                        android:layout_height="@dimen/order_item_allergen"
+                        android:padding="1dp"
+                        android:src="@drawable/allergen_sesamo"/>
+
+                    <ImageView
+                        android:id="@+id/dish_allergen2"
+                        android:layout_width="@dimen/order_item_allergen"
+                        android:layout_height="@dimen/order_item_allergen"
+                        android:padding="1dp"
+                        android:src="@drawable/allergen_soja"/>
+
+                    <ImageView
+                        android:id="@+id/dish_allergen1"
+                        android:layout_width="@dimen/order_item_allergen"
+                        android:layout_height="@dimen/order_item_allergen"
+                        android:padding="1dp"
+                        android:src="@drawable/allergen_sulfitos"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_margin="@dimen/activity_horizontal_margin">
+
+            <TextView
+                android:id="@+id/dish_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="El pulpo a la gallega o polbo á feira (literalmente ‘pulpo a la feria’, pues era y es costumbre comerlo en las tradicionales ferias de comercio de ganado y animales, y ya más actualmente en las fiestas y romerías), es sencillamente pulpo cocido con cachelos (patatas cocidas, habitualmente con la piel si son patacas novas, las primeras de la cosecha), aderezado en el momento de hervirlo con sal gorda, pimentón y aceite de oliva. Es un plato sencillo, pero que goza de gran popularidad. Las actuales normas de sanidad en la hostelería han propiciado que se sirva en plato de porcelana y con tenedor, a pesar de lo cual todo entendido procura que le sea servido en el tradicional plato de madera y lo comerá con palillo del mismo material, apoyado en un trozo de pan que recoge el mollo o salsa, que le aportan una calidez más agradable al paladar; las mismas normativas han provocado que sean buscados los establecimientos donde aún se cocina en pote de cobre, como en las ferias tradicionales."/>
+
+        </ScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/order_item_notes"
+                android:textSize="20dp"
+                android:textStyle="bold"/>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:fadeScrollbars="false">
+
+                <EditText
+                    android:id="@+id/dish_notes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Alguna nota???"
+                    android:inputType="textMultiLine"/>
+
+            </ScrollView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="right|bottom"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/cancel_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@android:string/cancel"/>
+
+            <Button
+                android:id="@+id/accept_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@android:string/ok"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>
