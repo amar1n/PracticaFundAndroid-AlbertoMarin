@@ -49,6 +49,10 @@ public class Table implements Serializable {
         return mOrder.getOrderItems().get(orderItemPosition);
     }
 
+    public void cleanTable() {
+        mOrder = null;
+    }
+
     @Override
     public String toString() {
         return getCode();

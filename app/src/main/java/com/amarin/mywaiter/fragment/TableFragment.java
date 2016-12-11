@@ -29,7 +29,7 @@ import java.util.LinkedList;
 
 public class TableFragment extends Fragment {
 
-    protected int mPosition;
+    protected int mTablePosition;
     protected OnShowMenuClickListener mOnShowMenuClickListener;
     protected OnOrderItemSelectedListener mOnOrderItemSelectedListener;
 
@@ -48,7 +48,7 @@ public class TableFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         if (getArguments() != null) {
-            mPosition = getArguments().getInt(MyWaiterConstants.ARG_TABLE_POSITION);
+            mTablePosition = getArguments().getInt(MyWaiterConstants.ARG_TABLE_POSITION);
         }
 
         setHasOptionsMenu(true);
@@ -62,18 +62,18 @@ public class TableFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_table, container, false);
 
         LinkedList<OrderItem> orderItems = new LinkedList<>();
-        Table table = Restaurant.getInstance().getTableByPosition(mPosition);
+        Table table = Restaurant.getInstance().getTableByPosition(mTablePosition);
         if (table.getOrder() != null && !table.getOrder().getOrderItems().isEmpty()) {
             orderItems = table.getOrder().getOrderItems();
         }
-        ListView list = (ListView) root.findViewById(android.R.id.list);
+        ListView listView = (ListView) root.findViewById(android.R.id.list);
         ArrayAdapter<OrderItem> adapter = new ArrayAdapter<>(
                 getActivity(),
                 android.R.layout.simple_list_item_1,
                 orderItems // Nuestro modelo
         );
-        list.setAdapter(adapter);
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 if (mOnOrderItemSelectedListener != null) {
@@ -107,7 +107,10 @@ public class TableFragment extends Fragment {
         super.onPrepareOptionsMenu(menu);
 
         MenuItem generateTheBill = menu.findItem(R.id.menu_generate_the_bill);
-        generateTheBill.setEnabled(Restaurant.getInstance().getTableByPosition(mPosition).getOrder() != null);
+        generateTheBill.setEnabled(Restaurant.getInstance().getTableByPosition(mTablePosition).getOrder() != null);
+
+        MenuItem cleanTable = menu.findItem(R.id.menu_clean_table);
+        cleanTable.setEnabled(Restaurant.getInstance().getTableByPosition(mTablePosition).getOrder() != null);
     }
 
     @Override
@@ -119,10 +122,21 @@ public class TableFragment extends Fragment {
 
                 // Ha habido algún error, se lo notificamos al usuario
                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
-                alertDialog.setTitle(String.format(getString(R.string.table_bill_title_msg), Restaurant.getInstance().getTableByPosition(mPosition).getCode()));
-                alertDialog.setMessage(String.format(getString(R.string.table_bill_msg), Restaurant.getInstance().getTableByPosition(mPosition).getBill()));
+                alertDialog.setTitle(String.format(getString(R.string.table_bill_title_msg), Restaurant.getInstance().getTableByPosition(mTablePosition).getCode()));
+                alertDialog.setMessage(String.format(getString(R.string.table_bill_msg), Restaurant.getInstance().getTableByPosition(mTablePosition).getBill()));
                 alertDialog.setPositiveButton(android.R.string.ok, null);
                 alertDialog.show();
+
+                return true;
+            case R.id.menu_clean_table:
+
+                Table table = Restaurant.getInstance().getTableByPosition(mTablePosition);
+                table.cleanTable();
+
+                getFragmentManager().beginTransaction()
+                        .detach(this)
+                        .attach(this)
+                        .commit();
 
                 return true;
             default:

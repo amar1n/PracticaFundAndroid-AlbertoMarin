@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">MyWaiter</string>
     <string name="menu_generate_the_bill">La cuenta!!!</string>
+    <string name="menu_clean_table">Limpiar mesa</string>
     <string name="table_bill_title_msg">La cuenta de la mesa %s es...</string>
     <string name="table_bill_msg">%s!!!</string>
     <string name="menu_download_error_msg">No se pudo descargar el menú</string>
