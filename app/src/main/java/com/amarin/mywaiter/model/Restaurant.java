@@ -44,18 +44,4 @@ public class Restaurant implements Serializable {
     public Dish getDishByPosition(int position) {
         return getMenu().getDishes().get(position);
     }
-
-    public Integer getTablePositionByTableCode(String code) {
-        for (int i = 0; i < mTables.size(); i++) {
-            Table table = mTables.get(i);
-            if (table.getCode().equals(code)) return i;
-        }
-        return null;
-    }
-
-    public void replaceTable(int position, Table newTable) {
-        if (mTables.size() < position) return;
-
-        mTables.set(position, newTable);
-    }
 }

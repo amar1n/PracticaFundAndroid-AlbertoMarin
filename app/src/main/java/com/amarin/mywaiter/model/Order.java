@@ -13,5 +13,4 @@ public class Order implements Serializable {
     public LinkedList<OrderItem> getOrderItems() {
         return mOrderItems;
     }
-
 }

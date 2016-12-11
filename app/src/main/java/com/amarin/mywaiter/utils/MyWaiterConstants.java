@@ -48,5 +48,5 @@ public interface MyWaiterConstants {
     public static final int RESULT_CANCEL = 0;
 
     public static final int REQUEST_ORDER_ITEM = 1;
-    public static final int REQUEST_MENU = 1;
+    public static final int REQUEST_MENU = 2;
 }

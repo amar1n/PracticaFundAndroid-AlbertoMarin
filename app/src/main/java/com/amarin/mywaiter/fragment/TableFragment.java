@@ -13,10 +13,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.amarin.mywaiter.R;
+import com.amarin.mywaiter.facade.OnOrderItemSelectedListener;
 import com.amarin.mywaiter.facade.OnShowMenuClickListener;
 import com.amarin.mywaiter.model.OrderItem;
 import com.amarin.mywaiter.model.Restaurant;
@@ -29,6 +31,7 @@ public class TableFragment extends Fragment {
 
     protected int mPosition;
     protected OnShowMenuClickListener mOnShowMenuClickListener;
+    protected OnOrderItemSelectedListener mOnOrderItemSelectedListener;
 
     public static TableFragment newInstance(int position) {
         Bundle arguments = new Bundle();
@@ -70,6 +73,14 @@ public class TableFragment extends Fragment {
                 orderItems // Nuestro modelo
         );
         list.setAdapter(adapter);
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                if (mOnOrderItemSelectedListener != null) {
+                    mOnOrderItemSelectedListener.onOrderItemSelected(position);
+                }
+            }
+        });
 
         FloatingActionButton addButton = (FloatingActionButton) root.findViewById(R.id.add_order_item_button);
         addButton.setOnClickListener(new View.OnClickListener() {
@@ -126,6 +137,9 @@ public class TableFragment extends Fragment {
         if (getActivity() instanceof OnShowMenuClickListener) {
             mOnShowMenuClickListener = (OnShowMenuClickListener) getActivity();
         }
+        if (getActivity() instanceof OnOrderItemSelectedListener) {
+            mOnOrderItemSelectedListener = (OnOrderItemSelectedListener) getActivity();
+        }
     }
 
     @Override
@@ -135,6 +149,9 @@ public class TableFragment extends Fragment {
         if (getActivity() instanceof OnShowMenuClickListener) {
             mOnShowMenuClickListener = (OnShowMenuClickListener) getActivity();
         }
+        if (getActivity() instanceof OnOrderItemSelectedListener) {
+            mOnOrderItemSelectedListener = (OnOrderItemSelectedListener) getActivity();
+        }
     }
 
     @Override
@@ -142,5 +159,6 @@ public class TableFragment extends Fragment {
         super.onDetach();
 
         mOnShowMenuClickListener = null;
+        mOnOrderItemSelectedListener = null;
     }
 }

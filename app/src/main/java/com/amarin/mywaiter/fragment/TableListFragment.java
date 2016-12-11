@@ -31,11 +31,10 @@ public class TableListFragment extends Fragment {
         ListView list = (ListView) root.findViewById(android.R.id.list);
         ArrayAdapter<Table> adapter = new ArrayAdapter<>(
                 getActivity(),
-                android.R.layout.simple_list_item_1,
+                android.R.layout.simple_selectable_list_item,
                 Restaurant.getInstance().getTables() // Nuestro modelo
         );
         list.setAdapter(adapter);
-
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {

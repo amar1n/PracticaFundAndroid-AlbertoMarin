@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -77,7 +78,11 @@ public class OrderItemFragment extends Fragment {
                 if (mOnOrderItemResultListener != null) {
                     TextView textView = (TextView) view.getRootView().findViewById(R.id.dish_notes);
                     CharSequence text = textView.getText();
-                    String notes = text != null ? (text.length() == 0 ? text.toString() : null) : null;
+
+                    String notes = null;
+                    if (text != null && text.length() != 0) {
+                        notes = text.toString();
+                    }
                     mOrderItem.setNote(notes);
                     mOnOrderItemResultListener.onButtonClick(MyWaiterConstants.RESULT_OK, mOrderItem);
                 }

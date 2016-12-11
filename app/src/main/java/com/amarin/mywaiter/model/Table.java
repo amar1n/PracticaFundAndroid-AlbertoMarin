@@ -24,6 +24,11 @@ public class Table implements Serializable {
         mOrder.getOrderItems().add(orderItem);
     }
 
+    public void replaceOrderItem(int position, OrderItem orderItem) {
+        if (getOrderItemByPosition(position) == null) return;
+        mOrder.getOrderItems().set(position, orderItem);
+    }
+
     public BigDecimal getBill() {
         BigDecimal result = BigDecimal.ZERO;
 
@@ -34,6 +39,14 @@ public class Table implements Serializable {
         }
 
         return result;
+    }
+
+    public OrderItem getOrderItemByPosition(int orderItemPosition) {
+        if (mOrder == null) return null;
+        if (mOrder.getOrderItems().isEmpty()) return null;
+        if (mOrder.getOrderItems().size() < orderItemPosition) return null;
+
+        return mOrder.getOrderItems().get(orderItemPosition);
     }
 
     @Override
